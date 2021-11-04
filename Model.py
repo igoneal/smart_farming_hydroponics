@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, Column, Integer, Float, String
 from sqlalchemy.ext.declarative import declarative_base
 
+timestamp = 1234567890
 # initialize GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -51,12 +52,13 @@ class Reading(Base):
 
 
 # create Table using metadata
-Base.metatdata.create_all(engine)
+Base.metadata.create_all(engine)
 
 # Add sensors to sensors table
 session = Session()
-today = str(datetime.date.today())
-sensor11 = Sensor(date=today, name="Temp & RH", pin=23)
+#today = str(datetime.date.today())
+today = str(time.ctime())
+sensor11 = Sensor(date=today, name="DHT 11 Sensor for Temperature & Relative Humidity", pin=23)
 session.add_all([sensor11])
 session.commit()
 session.close()
@@ -79,10 +81,10 @@ while True:
     # Add readings to reading tables
 
     session = Session()
-    temp_reading = Reading(date=today, desc="Temperature", value=temp)
-    hum_reading = Reading(date=today, desc="Relative Humidity", value=humidity)
+    temp_reading = Reading(date=today,desc="Temperature", value=temp)
+    hum_reading = Reading(date=today,desc="Relative Humidity", value=humidity)
 
-    sensor11 = Sensor(date=today, name="Temp & RH", pin=23)
+    sensor11 = Sensor(date=today,name="Temp & RH", pin=23)
     session.add_all([temp_reading, hum_reading])
     session.commit()
     session.close()

@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Smart Farming</title>
-</head>
-<body>
-<p>Raspberry Pi monitoring of climatic data in a hydroponics Farm</p>
-<p>The sensor page displays all the sensors connected to the Raspberry Pi in the Hydroponic Farm</p>
-<p>The Reading page display all the readings from each sensors connected to the Raspberry Pi monitoring of climatic data in a hydroponics Farm</p>
-</body>
-</html>
-#
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h1>SMART FARMING</h1>
+<P>This is an Internet of Things cloud based smart Farming Research, this research will use the climatic data from the hydroponics farm for analytics and prediction </P>
+<p>The sensors are connected to the Mobile edge computing(MEC) devices within this smart farm and these MEC are connected to the cloud.</p>
+<p>The sensor page displays all the sensors connected to the MEC in the Hydroponics Farm</p>
+<p>The Reading page display all the readings from each sensor connected to the MEC receiving the climatic data within the hydroponics Farm</p>
+{% endblock %}
